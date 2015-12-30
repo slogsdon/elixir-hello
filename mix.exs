@@ -14,7 +14,7 @@ defmodule Hello.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :inets, :crypto, :asn1, :public_key, :ssl]]
   end
 
   # Dependencies can be Hex packages:
