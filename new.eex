@@ -1,1 +1,110 @@
-template <%= 1 + 1 %>
+<!-- START FILE .gitignore -->
+/_build
+/cover
+/deps
+erl_crash.dump
+*.ez
+
+<!-- START FILE README.md -->
+# <%= @module %>
+
+**TODO: Add description**
+
+## Installation
+
+If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+
+  1. Add <%= @app %> to your list of dependencies in `mix.exs`:
+
+        def deps do
+          [{:<%= @app %>, "~> 0.0.1"}]
+        end
+
+  2. Ensure <%= @app %> is started before your application:
+
+        def application do
+          [applications: [:<%= @app %>]]
+        end
+
+<!-- START FILE mix.exs -->
+defmodule <%= @module %>.Mixfile do
+  use Mix.Project
+
+  def project do
+    [app: :<%= @app %>,
+     version: "0.0.1",
+     elixir: "~> 1.1",
+     build_embedded: Mix.env == :prod,
+     start_permanent: Mix.env == :prod,
+     deps: deps]
+  end
+
+  # Configuration for the OTP application
+  #
+  # Type "mix help compile.app" for more information
+  def application do
+    [applications: [:logger]]
+  end
+
+  # Dependencies can be Hex packages:
+  #
+  #   {:mydep, "~> 0.3.0"}
+  #
+  # Or git/path repositories:
+  #
+  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
+  #
+  # Type "mix help deps" for more examples and options
+  defp deps do
+    []
+  end
+end
+
+<!-- START FILE config/config.exs -->
+# This file is responsible for configuring your application
+# and its dependencies with the aid of the Mix.Config module.
+use Mix.Config
+
+# This configuration is loaded before any dependency and is restricted
+# to this project. If another project depends on this project, this
+# file won't be loaded nor affect the parent project. For this reason,
+# if you want to provide default values for your application for
+# 3rd-party users, it should be done in your "mix.exs" file.
+
+# You can configure for your application as:
+#
+#     config :<%= @app %>, key: :value
+#
+# And access this configuration in your application as:
+#
+#     Application.get_env(:<%= @app %>, :key)
+#
+# Or configure a 3rd-party app:
+#
+#     config :logger, level: :info
+#
+
+# It is also possible to import configuration files, relative to this
+# directory. For example, you can emulate configuration per environment
+# by uncommenting the line below and defining dev.exs, test.exs and such.
+# Configuration from the imported file will override the ones defined
+# here (which is why it is important to import them last).
+#
+#     import_config "#{Mix.env}.exs"
+
+<!-- START FILE lib/<%= @app %>.ex -->
+defmodule <%= @module %> do
+end
+
+<!-- START FILE test/<%= @app %>_test.exs -->
+defmodule <%= @module %>Test do
+  use ExUnit.Case
+  doctest <%= @module %>
+
+  test "the truth" do
+    assert 1 + 1 == 2
+  end
+end
+
+<!-- START FILE test/test_helper.exs -->
+ExUnit.start()
